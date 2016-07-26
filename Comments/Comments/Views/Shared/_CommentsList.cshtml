@@ -1,17 +1,63 @@
-﻿@model IEnumerable<Comments.Models.Comment>
-
+﻿@model Comments.Models.CommentsListModel
 
 <table class="table">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Comments)
     {
         <tr>
             <td>
                 <img src="@item.Picture" />
             </td>
             <td>
-                <div>
-                    <b class="text-danger">@Html.DisplayFor(modelItem => item.UserName)</b> commented: @Html.DisplayFor(modelItem => item.Text)
-                </div>
+                <!--We need this block of code to create a highlighted text after search.-->
+                @if (Model.IsSearchResult && Model.SearchValue != "")
+                {
+
+                    bool userNameContainsSearchValue = false;
+                    string firstUserNamePart = "";
+                    string lastUserNamePart = "";
+                    if (item.UserName.Contains(Model.SearchValue))
+                    {
+                        userNameContainsSearchValue = true;
+                        firstUserNamePart = item.UserName.Substring(0, item.UserName.IndexOf(Model.SearchValue));
+                        lastUserNamePart = item.UserName.Substring(item.UserName.IndexOf(Model.SearchValue) + Model.SearchValue.Length);
+                    }
+
+                    bool textContainsSearchValue = false;
+                    string firstTextPart = "";
+                    string lastTextPart = "";
+                    if (item.Text.Contains(Model.SearchValue))
+                    {
+                        textContainsSearchValue = true;
+                        firstTextPart = item.Text.Substring(0, item.Text.IndexOf(Model.SearchValue));
+                        lastTextPart = item.Text.Substring(item.Text.IndexOf(Model.SearchValue) + Model.SearchValue.Length);
+                    }
+
+                    <div>
+                        @if (userNameContainsSearchValue)
+                        {
+                            <b class="text-danger">@firstUserNamePart<mark class="text-danger">@Model.SearchValue</mark>@lastUserNamePart</b>
+                        }
+                        else
+                        {
+                            <b class="text-danger">@item.UserName</b>
+                        }
+                        commented:
+                        @if (textContainsSearchValue)
+                        {
+                            <b class="text-danger">@firstTextPart<mark class="text-danger">@Model.SearchValue</mark>@lastTextPart</b>
+                        }
+                        else
+                        {
+                            <b class="text-danger">@item.Text</b>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <b class="text-danger">@item.UserName</b> commented: @Html.DisplayFor(modelItem => item.Text)
+                    </div>
+                }
                 <h6><small>@item.GetPostedTimeString()</small></h6>
             </td>
         </tr>

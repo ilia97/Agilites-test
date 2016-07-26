@@ -29,8 +29,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label" })
                                 <div>
-                                    @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                                    <input type="file"/>
                                 </div>
                             </div>
 
@@ -91,14 +90,14 @@
                         <h3>Resent comments</h3>
                     </div>
                     <div class="col col-md-3">
-                        <h3><input placeholder="search" class="form-control" /></h3>
+                        <h3><input placeholder="search" class="form-control" id="text" name="text"/></h3>
                     </div>
                     <div class="col col-md-2">
                         <h3><button class="btn btn-success">Update</button></h3>
                     </div>
                 </div>}
             <div id="commentsList">
-                @Html.Partial("_CommentsList", (IEnumerable<Comment>)ViewBag.CommentsList)
+                @Html.Partial("_CommentsList", (CommentsListModel)ViewBag.CommentsListModel)
             </div>
         </div>
     </div>

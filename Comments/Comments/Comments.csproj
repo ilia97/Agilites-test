@@ -163,7 +163,9 @@
     </Compile>
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\ICommentsRepository.cs" />
+    <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentsListModel.cs" />
     <Compile Include="Repository\CommentsRepository.cs" />
     <Compile Include="Repository\DatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,7 +15,11 @@ namespace Comments.Controllers
 
 		public ActionResult Index()
 		{
-			ViewBag.CommentsList = commentService.GetComments(0, 10).ToList();
+			ViewBag.CommentsListModel = new CommentsListModel()
+			{
+				Comments = commentService.GetComments(),
+				IsSearchResult = false
+			};
 			return View();
 		}
 
@@ -26,8 +30,13 @@ namespace Comments.Controllers
 			{
 				commentService.AddCommentAsync(model);
 			}
-			var comments = commentService.GetComments(0, 10);
-			return PartialView("_CommentsList", comments);
+
+			var commentsListModel = new CommentsListModel()
+			{
+				Comments = commentService.GetComments(),
+				IsSearchResult = false
+			};
+			return PartialView("_CommentsList", commentsListModel);
 		}
 	}
 }

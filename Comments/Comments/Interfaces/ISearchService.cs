@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Comments.Interfaces
 {
-	interface ICommentsRepository
+	interface ISearchService
 	{
-		void AddComment(Comment comment);
-
-		IEnumerable<Comment> GetComments();
+		IEnumerable<Comment> GetComments(string text);
 	}
 }

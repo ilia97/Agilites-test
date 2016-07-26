@@ -25,9 +25,9 @@ namespace Comments.Services
 			repository.AddComment(comment);
 		}
 
-		public IEnumerable<Comment> GetComments(int skip, int take)
+		public IEnumerable<Comment> GetComments()
 		{
-			return repository.GetComments(skip, take);
+			return repository.GetComments().OrderBy(x => x.Date);
 		}
 	}
 }

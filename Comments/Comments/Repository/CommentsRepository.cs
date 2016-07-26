@@ -23,9 +23,9 @@ namespace Comments.Repository
 			databaseContext.SaveChanges();
 		}
 
-		public IEnumerable<Comment> GetComments(int skip, int take)
+		public IEnumerable<Comment> GetComments()
 		{
-			return databaseContext.Comments.OrderBy(x => x.Date).Skip(skip).Take(take);
+			return databaseContext.Comments;
 		}
 	}
 }

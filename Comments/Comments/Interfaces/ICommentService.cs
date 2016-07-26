@@ -11,6 +11,6 @@ namespace Comments.Interfaces
 	{
 		void AddCommentAsync(Comment comment);
 
-		IEnumerable<Comment> GetComments(int skip, int take);
+		IEnumerable<Comment> GetComments();
 	}
 }
