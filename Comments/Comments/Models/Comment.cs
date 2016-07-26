@@ -34,6 +34,28 @@ namespace Comments.Models
 		[MaxLength(300)]
 		[DataType(DataType.MultilineText)]
 		public string Text { set; get; }
+
+		public string GetPostedTimeString()
+		{
+			DateTime currentDate = DateTime.Now;
+			var dateDifference = currentDate - this.Date;
+			if (dateDifference.Days > 0)
+			{
+				return String.Format("Posted {0} days ago", dateDifference.Days);
+			}
+			else if (dateDifference.Hours > 0)
+			{
+				return String.Format("Posted {0} hours ago", dateDifference.Hours);
+			}
+			else if (dateDifference.Minutes > 0)
+			{
+				return String.Format("Posted {0} minutes ago", dateDifference.Minutes);
+			}
+			else
+			{
+				return String.Format("Posted {0} seconds ago", dateDifference.Seconds);
+			}
+		}
 	}
 
 	public enum Gender
