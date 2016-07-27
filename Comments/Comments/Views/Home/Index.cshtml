@@ -1,5 +1,5 @@
 ﻿@using Comments.Models
-@model Comment
+@model AddCommentModel
 
 @{
     Layout = null;
@@ -17,7 +17,7 @@
     <hr />
     <div class="row">
         <div class="col col-md-5">
-            @using (Ajax.BeginForm("AddComment", "Home", new AjaxOptions() { UpdateTargetId = "commentsList" }))
+            @using (Ajax.BeginForm(new AjaxOptions()))
             {
                 @Html.AntiForgeryToken()
 
@@ -26,10 +26,10 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="row">
                         <div class="col col-md-3">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label" })
+                            <div class="form-group text-center">
                                 <div>
-                                    <input type="file"/>
+                                    <img id="image" class="img-responsive" width="200" height="200" src="~/Pictures/MaleDefault.png"/>
+                                    <input type="file" name="upload" id="upload"/>
                                 </div>
                             </div>
 
@@ -45,11 +45,23 @@
 
 
                             <div class="form-group">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label" })
                                         <div>
-                                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.EditorFor(model =>
+                                                model.Date,
+                                                new {
+                                                    htmlAttributes = new {
+                                                        @class = "form-control",
+                                                        type = "datetime-local",
+                                                        max = DateTime.Now.Year.ToString() + "-" +
+                                                        DateTime.Now.Month.ToString() + "-" +
+                                                        DateTime.Now.Day.ToString() + "T" +
+                                                        DateTime.Now.ToLongTimeString(),
+                                                        min = "2000-10-06T22:22:55"
+                                                    }
+                                                })
                                             @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -75,7 +87,7 @@
 
                             <div class="form-group">
                                 <div class="text-right">
-                                    <button class="btn btn-danger">Post &nbsp<span class="glyphicon glyphicon-share-alt"></span></button>
+                                    <button id="addCommentBtn" class="btn btn-danger">Post &nbsp<span class="glyphicon glyphicon-share-alt"></span></button>
                                 </div>
                             </div>
                         </div>
@@ -107,5 +119,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/ajax")
+
+    <script src="~/Scripts/Custom/addComment.js"></script>
 </body>
 </html>

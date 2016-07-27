@@ -24,13 +24,16 @@ namespace Comments.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult AddComment(Comment model)
+		public ActionResult AddComment(AddCommentModel model)
 		{
+			if (Request.Files.Count > 0)
+			{
+				model.File = Request.Files[0];
+			}
 			if (ModelState.IsValid)
 			{
-				commentService.AddCommentAsync(model);
+				commentService.AddCommentAsync(model, Server);
 			}
-
 			var commentsListModel = new CommentsListModel()
 			{
 				Comments = commentService.GetComments(),

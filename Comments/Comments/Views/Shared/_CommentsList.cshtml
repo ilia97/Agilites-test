@@ -4,8 +4,8 @@
     @foreach (var item in Model.Comments)
     {
         <tr>
-            <td>
-                <img src="@item.Picture" />
+            <td width="55">
+                <img class="img-responsive" width="50" height="50" src="@Url.Content(item.PictureLink)" />
             </td>
             <td>
                 <!--We need this block of code to create a highlighted text after search.-->

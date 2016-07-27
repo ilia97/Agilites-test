@@ -164,8 +164,9 @@
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\ICommentsRepository.cs" />
     <Compile Include="Interfaces\ISearchService.cs" />
+    <Compile Include="Models\ViewModels\AddCommentModel.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\CommentsListModel.cs" />
+    <Compile Include="Models\ViewModels\CommentsListModel.cs" />
     <Compile Include="Repository\CommentsRepository.cs" />
     <Compile Include="Repository\DatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,6 +188,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\addComment.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -215,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Pictures\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>

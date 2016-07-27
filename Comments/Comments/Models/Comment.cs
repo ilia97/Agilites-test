@@ -14,25 +14,14 @@ namespace Comments.Models
 		[HiddenInput(DisplayValue = false)]
 		public int Id { set; get; }
 
-		[Required]
-		[Display(Name = "User Name")]
-		[DataType(DataType.Text)]
 		public string UserName { set; get; }
 
-		[Required]
-		[Display(Name = "Date")]
-		[DataType(DataType.Date)]
 		public DateTime Date { set; get; }
 
-		[Required]
-		[Display(Name = "Gender")]
 		public Gender Gender { set; get; }
 
-		public string Picture { set; get; }
+		public string PictureLink { set; get; }
 
-		[Required]
-		[MaxLength(300)]
-		[DataType(DataType.MultilineText)]
 		public string Text { set; get; }
 
 		public string GetPostedTimeString()
