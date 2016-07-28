@@ -10,22 +10,22 @@ namespace Comments.Models
 {
 	public class AddCommentModel
 	{
-		[Required]
+		[Required(ErrorMessage = "User Name field is required.")]
 		[Display(Name = "User Name")]
 		[DataType(DataType.Text)]
 		public string UserName { set; get; }
 
-		[Required]
+		[Required(ErrorMessage = "Date field is required.")]
 		[Display(Name = "Date")]
 		[DataType(DataType.Date)]
 		public DateTime Date { set; get; }
 
-		[Required]
+		[Required(ErrorMessage = "Gender field is required.")]
 		[Display(Name = "Gender")]
 		public Gender Gender { set; get; }
 
-		[Required]
-		[MaxLength(300)]
+		[Required(ErrorMessage = "Text field is required.")]
+		[MaxLength(300, ErrorMessage = "Text field length must be lower than 300 symbols.")]
 		[DataType(DataType.MultilineText)]
 		public string Text { set; get; }
 

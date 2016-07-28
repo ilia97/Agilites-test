@@ -17,8 +17,7 @@
     <hr />
     <div class="row">
         <div class="col col-md-5">
-            @using (Ajax.BeginForm(new AjaxOptions()))
-            {
+            <form id="addCommentForm">
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
@@ -28,8 +27,12 @@
                         <div class="col col-md-3">
                             <div class="form-group text-center">
                                 <div>
-                                    <img id="image" class="img-responsive" width="200" height="200" src="~/Pictures/MaleDefault.png"/>
-                                    <input type="file" name="upload" id="upload"/>
+                                    <img id="image" class="img-responsive" width="200" height="200" src="~/Pictures/MaleDefault.png" />
+                                    @*<input type="file" name="upload" id="upload"/>*@
+                                    <br />
+                                    <label class="btn btn-default btn-file">
+                                        Upload <input type="file" name="upload" id="upload" style="display: none;">
+                                    </label>
                                 </div>
                             </div>
 
@@ -38,7 +41,7 @@
                             <div class="form-group col">
                                 @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
                                 <div>
-                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -51,15 +54,14 @@
                                         <div>
                                             @Html.EditorFor(model =>
                                                 model.Date,
-                                                new {
-                                                    htmlAttributes = new {
+                                                new
+                                                {
+                                                    htmlAttributes = new
+                                                    {
                                                         @class = "form-control",
                                                         type = "datetime-local",
-                                                        max = DateTime.Now.Year.ToString() + "-" +
-                                                        DateTime.Now.Month.ToString() + "-" +
-                                                        DateTime.Now.Day.ToString() + "T" +
-                                                        DateTime.Now.ToLongTimeString(),
-                                                        min = "2000-10-06T22:22:55"
+                                                        max = DateTime.Now.ToString("yyyy-MM-dd") + "T" + DateTime.Now.ToString("HH:mm:ss"),
+                                                        min = "2000-01-01T00:00:00"
                                                     }
                                                 })
                                             @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
@@ -92,14 +94,15 @@
                             </div>
                         </div>
                     </div>
-                </div>}
+                </div>
+            </form>
         </div>
         <div class="col col-md-6 col-md-offset-1 table-bordered">
             @using (Ajax.BeginForm("GetCommentsList", "Search", new AjaxOptions() { UpdateTargetId = "commentsList" }))
             {
                 <div class="row">
                     <div class="col col-md-7">
-                        <h3>Resent comments</h3>
+                        <h3 class="text-danger">Resent comments <span id="commentsCount" style="background-color: orange" class="badge">@(((CommentsListModel)ViewBag.CommentsListModel).Comments.Count())</span></h3>
                     </div>
                     <div class="col col-md-3">
                         <h3><input placeholder="search" class="form-control" id="text" name="text"/></h3>
