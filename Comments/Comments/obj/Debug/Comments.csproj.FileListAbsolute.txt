@@ -65,3 +65,4 @@ D:\C#\Agilites test\Comments\Comments\bin\PagedList.dll
 D:\C#\Agilites test\Comments\Comments\bin\PagedList.Mvc.dll
 D:\C#\Agilites test\Comments\Comments\bin\PagedList.xml
 D:\C#\Agilites test\Comments\Comments\bin\PagedList.Mvc.xml
+D:\C#\Agilites test\Comments\Comments\obj\Debug\Comments.csprojResolveAssemblyReference.cache

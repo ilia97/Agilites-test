@@ -20,9 +20,11 @@ namespace Comments.Services
 
 		public IEnumerable<Comment> GetComments(string text)
 		{
-			return repository.GetComments().Where(x =>
-				x.Text.Contains(text) ||
-				x.UserName.Contains(text));
+			return repository.GetComments()
+				.Where(x =>
+					x.Text.ToLower().Contains(text.ToLower()) ||
+					x.UserName.ToLower().Contains(text.ToLower()))
+				.OrderByDescending(x => x.Date);
 		}
 	}
 }

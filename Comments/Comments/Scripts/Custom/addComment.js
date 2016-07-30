@@ -79,11 +79,11 @@
 
 	function clearFields() {
 		isAvatarUploaded = false;
-		$("#UserName").val("");
+		//$("#UserName").val("");
 		$("#Date").val("");
-		$("#Gender").val("0");
+		//$("#Gender").val("0");
 		$("#Text").val("");
-		document.getElementById('upload').value = null;
+		//document.getElementById('upload').value = null;
 	}
 
 	function addErrors(errors) {

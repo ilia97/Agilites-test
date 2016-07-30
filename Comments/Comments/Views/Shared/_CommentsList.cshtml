@@ -17,50 +17,58 @@
 
                         bool userNameContainsSearchValue = false;
                         string firstUserNamePart = "";
+                        string middleUserNamePart = "";
                         string lastUserNamePart = "";
-                        if (item.UserName.Contains(Model.SearchValue))
+                        int userNameIndexOfSearchValue = item.UserName.ToLower().IndexOf(Model.SearchValue.ToLower());
+                        if (userNameIndexOfSearchValue != -1)
                         {
                             userNameContainsSearchValue = true;
-                            firstUserNamePart = item.UserName.Substring(0, item.UserName.IndexOf(Model.SearchValue));
-                            lastUserNamePart = item.UserName.Substring(item.UserName.IndexOf(Model.SearchValue) + Model.SearchValue.Length);
+
+                            firstUserNamePart = item.UserName.Substring(0, userNameIndexOfSearchValue);
+                            middleUserNamePart = item.UserName.Substring(userNameIndexOfSearchValue, Model.SearchValue.Length);
+                            lastUserNamePart = item.UserName.Substring(userNameIndexOfSearchValue + Model.SearchValue.Length);
                         }
 
                         bool textContainsSearchValue = false;
                         string firstTextPart = "";
+                        string middleTextPart = "";
                         string lastTextPart = "";
-                        if (item.Text.Contains(Model.SearchValue))
+                        int textIndexOfSearchValue = item.Text.ToLower().IndexOf(Model.SearchValue.ToLower());
+                        if (textIndexOfSearchValue != -1)
                         {
                             textContainsSearchValue = true;
-                            firstTextPart = item.Text.Substring(0, item.Text.IndexOf(Model.SearchValue));
-                            lastTextPart = item.Text.Substring(item.Text.IndexOf(Model.SearchValue) + Model.SearchValue.Length);
+
+                            firstTextPart = item.Text.Substring(0, textIndexOfSearchValue);
+                            middleTextPart = item.Text.Substring(textIndexOfSearchValue, Model.SearchValue.Length);
+                            lastTextPart = item.Text.Substring(textIndexOfSearchValue + Model.SearchValue.Length);
                         }
 
                         <div>
                             @if (userNameContainsSearchValue)
                             {
-                                <b class="text-danger">@firstUserNamePart<mark class="text-danger">@Model.SearchValue</mark>@lastUserNamePart</b>
-}
+                                <b class="text-danger">@firstUserNamePart<mark class="text-danger">@middleUserNamePart</mark>@lastUserNamePart</b>
+                            }
                             else
                             {
                                 <b class="text-danger">@item.UserName</b>
-}
+                            }
                             commented:
                             @if (textContainsSearchValue)
                             {
-                                <b class="text-danger">@firstTextPart<mark class="text-danger">@Model.SearchValue</mark>@lastTextPart</b>
-}
+                                <b class="text-danger">@firstTextPart<mark class="text-danger">@middleTextPart</mark>@lastTextPart</b>
+                            }
                             else
                             {
                                 <b class="text-danger">@item.Text</b>
-}
+                            }
                         </div>
-}
+                    }
                     else
                     {
                         <div>
                             <b class="text-danger">@item.UserName</b> commented: @Html.DisplayFor(modelItem => item.Text)
                         </div>
-}
+                    }
                     <h6><small>@item.GetPostedTimeString()</small></h6>
                 </td>
             </tr>

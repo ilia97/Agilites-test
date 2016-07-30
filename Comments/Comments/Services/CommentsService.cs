@@ -34,8 +34,7 @@ namespace Comments.Services
 			}
 			if (file != null)
 			{
-				string fileName = Path.GetFileName(file.FileName);
-				filePath = $@"~/Pictures/" + fileName;
+				filePath = GenerateFilePath(file, server);
 				file.SaveAs(server.MapPath(filePath));
 			}
 
@@ -54,6 +53,17 @@ namespace Comments.Services
 		public IEnumerable<Comment> GetComments()
 		{
 			return repository.GetComments().OrderByDescending(x => x.Date);
+		}
+
+		/// <summary>
+		/// Generates file name.
+		/// </summary>
+		/// <returns>File name.</returns>
+		private string GenerateFilePath(HttpPostedFileBase file, HttpServerUtilityBase server)
+		{
+			string fileExtention = file.FileName.Substring(file.FileName.LastIndexOf('.'));
+			string fileName = (Directory.GetFiles(server.MapPath($@"~/Pictures/")).Length + 1).ToString();
+			return $@"~/Pictures/" + fileName + fileExtention;
 		}
 	}
 }
