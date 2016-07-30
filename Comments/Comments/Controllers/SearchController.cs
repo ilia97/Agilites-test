@@ -6,23 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+using System.Configuration;
 
 namespace Comments.Controllers
 {
     public class SearchController : Controller
     {
+		private int pageSize = PagedListState.pageSize;
+
 		ISearchService searchService = new SearchService();
 
 		[HttpPost]
 		public ActionResult GetCommentsList(string searchQuery)
 		{
-			var commentsList = new CommentsListModel()
-			{
-				Comments = searchService.GetComments(searchQuery),
-				IsSearchResult = true,
-				SearchValue = searchQuery
-			};
-			return View("_CommentsList", commentsList);
+			PagedListState.Comments = searchService.GetComments(searchQuery);
+			PagedListState.SearchValue = searchQuery;
+			return RedirectToAction("Index", "Paging");
 		}
     }
 }

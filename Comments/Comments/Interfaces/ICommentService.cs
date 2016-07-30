@@ -10,7 +10,7 @@ namespace Comments.Interfaces
 {
 	interface ICommentService
 	{
-		void AddCommentAsync(AddCommentModel comment, HttpServerUtilityBase server);
+		void AddComment(AddCommentModel comment, HttpServerUtilityBase server);
 
 		IEnumerable<Comment> GetComments();
 	}

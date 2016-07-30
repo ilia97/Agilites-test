@@ -59,6 +59,9 @@ D:\C#\Agilites test\Comments\Comments\bin\ru\System.Web.Razor.resources.dll
 D:\C#\Agilites test\Comments\Comments\bin\ru\System.Web.WebPages.resources.dll
 D:\C#\Agilites test\Comments\Comments\bin\ru\System.Web.WebPages.Deployment.resources.dll
 D:\C#\Agilites test\Comments\Comments\bin\ru\System.Web.WebPages.Razor.resources.dll
-D:\C#\Agilites test\Comments\Comments\obj\Debug\Comments.csprojResolveAssemblyReference.cache
 D:\C#\Agilites test\Comments\Comments\obj\Debug\Comments.dll
 D:\C#\Agilites test\Comments\Comments\obj\Debug\Comments.pdb
+D:\C#\Agilites test\Comments\Comments\bin\PagedList.dll
+D:\C#\Agilites test\Comments\Comments\bin\PagedList.Mvc.dll
+D:\C#\Agilites test\Comments\Comments\bin\PagedList.xml
+D:\C#\Agilites test\Comments\Comments\bin\PagedList.Mvc.xml

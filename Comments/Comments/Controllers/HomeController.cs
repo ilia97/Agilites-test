@@ -7,6 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+using System.Configuration;
 
 namespace Comments.Controllers
 {
@@ -16,10 +19,11 @@ namespace Comments.Controllers
 
 		public ActionResult Index()
 		{
+			PagedListState.SearchValue = "";
+			PagedListState.Comments = commentService.GetComments();
 			ViewBag.CommentsListModel = new CommentsListModel()
 			{
-				Comments = commentService.GetComments(),
-				IsSearchResult = false
+				Comments = PagedListState.Comments.ToPagedList(1, PagedListState.pageSize)
 			};
 			return View();
 		}
@@ -33,13 +37,10 @@ namespace Comments.Controllers
 			}
 			if (ModelState.IsValid)
 			{
-				commentService.AddCommentAsync(model, Server);
-				var commentsListModel = new CommentsListModel()
-				{
-					Comments = commentService.GetComments(),
-					IsSearchResult = false
-				};
-				return PartialView("_CommentsList", commentsListModel);
+				commentService.AddComment(model, Server);
+				PagedListState.Comments = commentService.GetComments();
+				PagedListState.SearchValue = "";
+				return RedirectToAction("Index", "Paging");
 			}
 			else
 			{

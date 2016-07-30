@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Comments.Models
 {
@@ -10,12 +12,10 @@ namespace Comments.Models
 	{
 		public CommentsListModel()
 		{
-			Comments = new List<Comment>();
+			Comments = new List<Comment>().ToPagedList(1, 1);
 		}
 
-		public IEnumerable<Comment> Comments{ set; get;}
-
-		public bool IsSearchResult { set; get; }
+		public IPagedList<Comment> Comments{ set; get;}
 
 		public string SearchValue { set; get; }
 	}

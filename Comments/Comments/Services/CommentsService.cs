@@ -20,7 +20,7 @@ namespace Comments.Services
 			repository = new CommentsRepository();
 		}
 
-		public void AddCommentAsync(AddCommentModel addCommentModel, HttpServerUtilityBase server)
+		public void AddComment(AddCommentModel addCommentModel, HttpServerUtilityBase server)
 		{
 			var file = addCommentModel.File;
 			string filePath = $@"~/Pictures/";
