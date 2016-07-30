@@ -1,5 +1,7 @@
 ﻿@model Comments.Models.CommentsListModel
 
+@if (Model.Comments.Any())
+{
 <table class="table">
     @foreach (var item in Model.Comments)
     {
@@ -36,30 +38,37 @@
                         @if (userNameContainsSearchValue)
                         {
                             <b class="text-danger">@firstUserNamePart<mark class="text-danger">@Model.SearchValue</mark>@lastUserNamePart</b>
-                        }
+}
                         else
                         {
                             <b class="text-danger">@item.UserName</b>
-                        }
+}
                         commented:
                         @if (textContainsSearchValue)
                         {
                             <b class="text-danger">@firstTextPart<mark class="text-danger">@Model.SearchValue</mark>@lastTextPart</b>
-                        }
+}
                         else
                         {
                             <b class="text-danger">@item.Text</b>
-                        }
+}
                     </div>
-                }
+}
                 else
                 {
                     <div>
                         <b class="text-danger">@item.UserName</b> commented: @Html.DisplayFor(modelItem => item.Text)
                     </div>
-                }
+}
                 <h6><small>@item.GetPostedTimeString()</small></h6>
             </td>
         </tr>
     }
 </table>
+}
+else
+{
+    <div class="text-center">
+        <h1>No comments yet</h1>
+    </div>
+}

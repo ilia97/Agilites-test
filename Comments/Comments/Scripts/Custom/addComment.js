@@ -18,7 +18,7 @@
 		e.preventDefault();
 		var files = document.getElementById('upload').files;
 		var form = $("#addCommentForm");
-		if (form.valid()) {
+		if (validateForm(form)) {
 			if (window.FormData !== undefined) {
 				var data = new FormData();
 				data.append("UserName", $("#UserName").val());
@@ -87,8 +87,17 @@
 	}
 
 	function addErrors(errors) {
-		for (var i = 0; i < errors.length; i++) {
-			
+		for (var errorField in errors) {
+			$("span[data-valmsg-for=" + errorField + "]").text(errors[errorField]);
+		}
+	}
+
+	function validateForm(form) {
+		try{
+			return form.valid();
+		}
+		catch(e){
+			return true;
 		}
 	}
 });

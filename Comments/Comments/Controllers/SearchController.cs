@@ -14,13 +14,13 @@ namespace Comments.Controllers
 		ISearchService searchService = new SearchService();
 
 		[HttpPost]
-		public ActionResult GetCommentsList(string text)
+		public ActionResult GetCommentsList(string searchQuery)
 		{
 			var commentsList = new CommentsListModel()
 			{
-				Comments = searchService.GetComments(text),
+				Comments = searchService.GetComments(searchQuery),
 				IsSearchResult = true,
-				SearchValue = text
+				SearchValue = searchQuery
 			};
 			return View("_CommentsList", commentsList);
 		}
