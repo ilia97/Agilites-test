@@ -43,7 +43,7 @@
                             lastTextPart = item.Text.Substring(textIndexOfSearchValue + Model.SearchValue.Length);
                         }
 
-                        <div>
+                        <div class="hypernation">
                             @if (userNameContainsSearchValue)
                             {
                                 <b class="text-danger">@firstUserNamePart<mark class="text-danger">@middleUserNamePart</mark>@lastUserNamePart</b>
@@ -55,17 +55,17 @@
                             commented:
                             @if (textContainsSearchValue)
                             {
-                                <b class="text-danger">@firstTextPart<mark class="text-danger">@middleTextPart</mark>@lastTextPart</b>
+                                @firstTextPart<mark>@middleTextPart</mark>@lastTextPart
                             }
                             else
                             {
-                                <b class="text-danger">@item.Text</b>
+                                @item.Text
                             }
                         </div>
                     }
                     else
                     {
-                        <div>
+                        <div class="hypernation">
                             <b class="text-danger">@item.UserName</b> commented: @Html.DisplayFor(modelItem => item.Text)
                         </div>
                     }

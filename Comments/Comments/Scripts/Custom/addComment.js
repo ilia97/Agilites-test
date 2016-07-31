@@ -64,6 +64,33 @@
 		readURL(this);
 	});
 
+	$("#Date").on("focus", function () {
+		var currentDate = new Date();
+		var currentYear = currentDate.getFullYear();
+		var currentMonth = currentDate.getMonth() + 1 > 9 ?
+							currentDate.getMonth() + 1 :
+							"0" + (currentDate.getMonth() + 1);
+		var currentDay = currentDate.getDate() > 9 ?
+						currentDate.getDate() :
+						"0" + currentDate.getDate();
+		var currentHour = currentDate.getHours() > 9 ?
+						currentDate.getHours() :
+						"0" + currentDate.getHours();
+		var currentMinute = currentDate.getMinutes() > 9 ?
+						currentDate.getMinutes() :
+						"0" + currentDate.getMinutes();
+		var currentSecond = currentDate.getSeconds() > 9 ?
+						currentDate.getSeconds() :
+						"0" + currentDate.getSeconds();
+		var stringDate = currentYear + "-" +
+						currentMonth + "-" +
+						currentDay + "T" +
+						currentHour + ":" +
+						currentMinute + ":" + 
+						currentSecond;
+		$(this).attr("max", stringDate);
+	});
+
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -78,7 +105,7 @@
 	}
 
 	function clearFields() {
-		isAvatarUploaded = false;
+		//isAvatarUploaded = false;
 		//$("#UserName").val("");
 		$("#Date").val("");
 		//$("#Gender").val("0");
